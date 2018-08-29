@@ -8,7 +8,19 @@ REQUEST_QUEUE_SIZE = 1024
 
 
 def grim_reaper(signum, frame):
-    pid, status = os.wait()
+    """循环调用waitpid，以获取所有已终止子进程的状态。还必须制定WNOHANG选项，
+    它告知waitpid在有子进程的运行但尚未终止时不要阻塞。（不能循环调用wait——没有方法告知wait在有子进程的运行但尚未终止时不要阻塞)"""
+    while True:  # 相当于轮询
+        try:
+            pid, status = os.waitpid(
+                -1,          # Wait for any child process
+                 os.WNOHANG  # Do not block and return EWOULDBLOCK error
+            )
+        except OSError:
+            return
+
+        if pid == 0:  # no more zombies
+            return
 
 
 def handle_request(client_connection):
@@ -16,6 +28,7 @@ def handle_request(client_connection):
     print(request.decode())
     http_response = b"""\
 HTTP/1.1 200 OK
+
 Hello, World!
 """
     client_connection.sendall(http_response)
@@ -49,7 +62,6 @@ def serve_forever():
             os._exit(0)
         else:  # parent
             client_connection.close()  # close parent copy and loop over
-
 
 if __name__ == '__main__':
     serve_forever()
