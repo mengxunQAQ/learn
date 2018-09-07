@@ -16,7 +16,7 @@ class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
             (r"/", MainHandler),
-            (r"/chatsocket", ChatSocketHandler),
+            (r"/chatsocket/", ChatSocketHandler),
         ]
         settings = dict(
             cookie_secret="__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
@@ -29,13 +29,15 @@ class Application(tornado.web.Application):
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.finish(json.dumps(ChatSocketHandler.cache))
+        room = self.get_argument("room", None)
+        if room:
+            ChatSocketHandler.create_new_room(room)
+        self.finish(json.dumps(list(ChatSocketHandler.room.keys())))
 
 
 class ChatSocketHandler(tornado.websocket.WebSocketHandler):
-    waiters = set()
-    cache = []
     cache_size = 200
+    room = dict()
 
     def check_origin(self, origin):
         return True
@@ -45,30 +47,39 @@ class ChatSocketHandler(tornado.websocket.WebSocketHandler):
         return {}
 
     def open(self):
-        ChatSocketHandler.waiters.add(self)
+        self.room_code = self.get_argument("room", None)
+        ChatSocketHandler.room[self.room_code]["waiters"].append(self)
 
     def on_close(self):
-        ChatSocketHandler.waiters.remove(self)
+        ChatSocketHandler.room[self.room_code]["waiters"].append(self)
 
     @classmethod
     def update_cache(cls, chat):
-        cls.cache.append(chat)
-        if len(cls.cache) > cls.cache_size:
-            cls.cache = cls.cache[-cls.cache_size:]
+        cls.room[chat["room"]]["cache"].append(chat)
+        if len(cls.room[chat["room"]]["cache"]) > cls.cache_size:
+            cls.room[chat["room"]]["cache"] = cls.room[chat["room"]]["cache"][-cls.cache_size:]
 
     @classmethod
     def send_updates(cls, chat):
-        logging.info("sending message to %d waiters", len(cls.waiters))
-        for waiter in cls.waiters:
+        logging.info("sending message to %d waiters", len(cls.room[chat["room"]]["waiters"]))
+        for waiter in cls.room[chat["room"]]["waiters"]:
             try:
                 waiter.write_message(chat)
             except:
                 logging.error("Error sending message", exc_info=True)
 
+    @classmethod
+    def create_new_room(self, room):
+        if room not in self.room:
+            self.room[room] = {'cache': [],
+                               'waiters': []}
+        return True
+
     def on_message(self, message):
         logging.info("got message %r", message)
         parsed = tornado.escape.json_decode(message)
         chat = {
+            "room": self.room_code,
             "id": str(uuid.uuid4()),
             "body": parsed["body"],
         }
@@ -88,3 +99,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
