@@ -36,6 +36,20 @@ class ModelMetaclass(type):
         attrs['__table__'] = name # 假设表名和类名一致
         return type.__new__(cls, name, bases, attrs)
 
+class BaseModel:
+    def __new__(cls, *args, **kwargs):
+        mappings = dict()
+        for k, v in cls.__dict__.items():
+            if isinstance(v, Field):
+                print('Found mapping: %s ==> %s' % (k, v))
+                mappings[k] = v
+        for k in mappings.keys():
+            delattr(cls, k)
+        setattr(cls, "__mappings__", mappings)
+        setattr(cls, "__table__", cls.__name__)
+        return super().__new__(cls, *args, **kwargs)
+
+
 class Model(dict, metaclass=ModelMetaclass):
 
     def __init__(self, **kw):
@@ -70,5 +84,14 @@ class User(Model):
     email = StringField('email')
     password = StringField('password')
 
-u = User(id=12345, name='Michael', email='test@orm.org', password='my-pwd')
+class Post(Model):
+    id = IntegerField('id')
+    title = StringField('title')
+    date = StringField('content')
+    author = StringField('author')
+
+u = User(id=123, name='Michael', email='test@orm.org', password='my-pwd')
 u.save()
+
+p = Post(id=456, title='I Have a Dream', date='August 28, 1963', author='Martin Luther King')
+p.save()
