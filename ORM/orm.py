@@ -50,7 +50,7 @@ class BaseModel:
         return super().__new__(cls, *args, **kwargs)
 
 
-class Model(dict, metaclass=ModelMetaclass):
+class Model(BaseModel, dict):
 
     def __init__(self, **kw):
         super(Model, self).__init__(**kw)
