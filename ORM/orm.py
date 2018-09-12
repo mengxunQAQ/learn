@@ -22,6 +22,7 @@ class IntegerField(Field):
 class ModelMetaclass(type):
 
     def __new__(cls, name, bases, attrs):
+        print(111111111)
         if name=='Model':
             return type.__new__(cls, name, bases, attrs)
         print('Found model: %s' % name)
@@ -38,6 +39,8 @@ class ModelMetaclass(type):
 
 class BaseModel:
     def __new__(cls, *args, **kwargs):
+        print(111111111)
+
         mappings = dict()
         for k, v in cls.__dict__.items():
             if isinstance(v, Field):
@@ -50,7 +53,7 @@ class BaseModel:
         return super().__new__(cls, *args, **kwargs)
 
 
-class Model(BaseModel, dict):
+class Model(dict, metaclass=ModelMetaclass):
 
     def __init__(self, **kw):
         super(Model, self).__init__(**kw)
@@ -90,6 +93,10 @@ class Post(Model):
     date = StringField('content')
     author = StringField('author')
 
+u = User(id=123, name='Michael', email='test@orm.org', password='my-pwd')
+u.save()
+u = User(id=123, name='Michael', email='test@orm.org', password='my-pwd')
+u.save()
 u = User(id=123, name='Michael', email='test@orm.org', password='my-pwd')
 u.save()
 
