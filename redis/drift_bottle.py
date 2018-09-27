@@ -1,7 +1,7 @@
 import redis
 
 
-r = redis.StrictRedis(host='localhost', port=6379, db=0)
+r = redis.StrictRedis(host='localhost', port=6379, db=0, decode_responses=True)
 
 
 def throw(user, msg):
@@ -19,7 +19,7 @@ def pick(user):
     pick_count = int(r.get(key))
     if  pick_count < 10:
         member = r.srandmember("members", number=1)[0]
-        msg = str(r.spop(member))
+        msg = r.spop(member)
         print(msg)
     else:
         print("今天捡瓶子机会已经用完~~~明天再来吧")
