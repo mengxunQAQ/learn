@@ -1,0 +1,17 @@
+Mex1	ex1.c	/^int main(int argc, char *argv[])$/
+Mex10	ex10.c	/^int main(int argc, char *argv[])$/
+Mex11	ex11.c	/^int main(int argc, char *argv[])$/
+Mex14	ex14.c	/^int main(int argc, char *argv[])$/
+Mex3	ex3.c	/^int main()$/
+Mex4	ex4.c	/^int main()$/
+Mex5	ex5.c	/^int main(int argc, char *argv[])$/
+Mex6	ex6.c	/^int main (int argc, char *argv[])$/
+Mex7	ex7.c	/^int main(int argc, char *argv[])$/
+Mex8	ex8.c	/^int main(int argc, char *argv[])$/
+Mex9	ex9.c	/^int main(int argc, char *argv[])$/
+Mpointer	pointer.c	/^int main(void)$/
+Mpointer2	pointer2.c	/^int main(void)$/
+Mprime	prime.c	/^int main(){$/
+can_print_it	ex14.c	/^int can_print_it(char ch)$/
+print_arguments	ex14.c	/^void print_arguments(int argc, char *argv[])$/
+print_letters	ex14.c	/^void print_letters(char arg[])$/
