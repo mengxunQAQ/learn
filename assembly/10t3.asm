@@ -36,9 +36,8 @@ code segment
            jcxz pop_stack
 	   mov dx,0
 	   div bx
-	   mov cl,al
-	   mov ch,0
-	   add dl,30h
+	   mov cx,ax
+	   add dx,30h
            push dx
 	   inc si
 	   jmp short push_stack
