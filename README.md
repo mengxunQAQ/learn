@@ -1,6 +1,6 @@
-## Some notes in the learning process
+## 学习记录
 
-This repository is used for record some notes in the process of study. 
-- [编码](code)
-- [c](c)
-- [简易服务器](web_server)
+- 中文
+- [English](readme.md)
+
+记录学习过程中产生的源码以及笔记
