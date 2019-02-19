@@ -4,6 +4,7 @@
 
 int even_ones(unsigned x)
 {
+	//关键点在于最终x的最后一位 等于 初始x所有位异或
 	unsigned  y = x >> 16; x ^= y;
 	printf("%x\n", x);
 	y = x >> 8; x ^= y;
