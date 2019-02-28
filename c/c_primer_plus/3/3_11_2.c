@@ -4,8 +4,9 @@
 int main(void){
     int c;
     printf("enter ascii:");
+    printf("_____\b\b\b\b");
     scanf("%d", &c);
-    printf("%c\n", c);
+    printf("char=%c\n", c);
 
     return 0;
 }
