@@ -1,7 +1,8 @@
 #include <stdio.h>
 
 int main(void){
-    int a[3] = {1, 2, 3};
-    printf("%d", a[1]);
+    float a = 1.1;
+    int b = 2;
+    printf("%d %d\n", a, b);
     return 0;
 }
