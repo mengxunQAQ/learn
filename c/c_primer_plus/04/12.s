@@ -60,7 +60,7 @@ _main:                                  ## @main
                                         ## -- End function
 	.section	__TEXT,__cstring,cstring_literals
 L_.str:                                 ## @.str
-	.asciz	"%.le %.le %.le %.le\n"
+	.asciz	"%.1e %.1e %.1e %.1e\n"
 
 L_.str.1:                               ## @.str.1
 	.asciz	"%ld %ld\n"

@@ -7,7 +7,7 @@ int main(void)
     double n2 = 3.0;
     long n3 = 200000000;
     long n4 = 1234567890;
-    printf("%.le %.le %.le %.le\n", n1, n2, n3, n4);
+    printf("%.1e %.1e %.1e %.1e\n", n1, n2, n3, n4);
     printf("%ld %ld\n", n3, n4);
     printf("%ld %ld %ld %ld\n", n1, n2, n3, n4);
     return 0;
