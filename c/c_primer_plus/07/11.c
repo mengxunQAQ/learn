@@ -43,7 +43,7 @@ int main(void)
             printf("I recognize only lowercase letters.\n");
         
         while (getchar() != '\n')
-            continue;
+            continue;  // 跳过输入行的其余部分
 
         printf("Plases type another letter or a #.\n");
     }  /*end while*/
