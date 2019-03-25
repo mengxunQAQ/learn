@@ -10,7 +10,7 @@ struct names_st
 };
 
 //类型定义
-typedef struct name_st names;
+typedef struct names_st names;
 
 //函数原型
 void get_names(names *);
