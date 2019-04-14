@@ -9,7 +9,8 @@ func main() {
 
 	switch num {
 	case 1:
-		fmt.Println("enter 1...")
+		fmt.Println("enter 1...") // go默认有break
+		fallthrough               // 相当于c不加break
 	case 2:
 		fmt.Println("enter 2...")
 	case 3:
