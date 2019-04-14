@@ -1,3 +1,4 @@
+/* switch */
 package main
 
 import "fmt"
