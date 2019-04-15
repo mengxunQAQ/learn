@@ -21,4 +21,11 @@ func main() {
 	for i := range str {
 		fmt.Printf("str[%d] = %c\n", i, str[i])
 	}
+
+	goto End
+	fmt.Println("can not print")
+
+End:
+	fmt.Println("go to end")
+
 }
