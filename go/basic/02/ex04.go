@@ -1,3 +1,4 @@
+/* 回调函数和多态 */
 package main
 
 import "fmt"
@@ -15,13 +16,13 @@ func sub(a, b int) (result int) {
 }
 
 func clac(a, b int, fTest FuncType) (result int) {
-	result = fTest(a, b)
+	result = fTest(a, b) // callback function
 	return
 }
 
 func main() {
-	result1 := clac(1, 2, add)
-	result2 := clac(2, 1, sub)
+	result1 := clac(1, 2, add) // 多态
+	result2 := clac(2, 1, sub) // 多态
 	fmt.Println(result1)
 	fmt.Println(result2)
 }
