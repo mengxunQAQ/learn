@@ -6,7 +6,7 @@ import "fmt"
 func main() {
 	// 定义变量，类型为map[int]string
 	var m1 map[int]string
-	fmt.Println("m1 =", m2)
+	fmt.Println("m1 =", m1)
 	fmt.Println("m1 =", len(m1))
 
 	// 可以通过make创建
@@ -22,6 +22,7 @@ func main() {
 
 	// 初始化
 	m4 := map[int]string{1: "mike", 2: "go"}
+	m4[1] = "Alen" // 如果键已存在则覆盖
 	fmt.Println("m4 =", m4)
 	fmt.Println("len =", len(m4))
 }
