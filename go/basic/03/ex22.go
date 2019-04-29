@@ -18,4 +18,10 @@ func main() {
 	// (2 指定成员初始化, 未初始化的自动赋值为0
 	var s2 *Student = &Student{name: "mike", addr: "shanghai"}
 	fmt.Println("s2 =", *s2)
+	fmt.Println("s2.name =", s2.name)
+
+	var s3 Student
+	s3.id = 1
+	s3.name = "Bob"
+	fmt.Println("s3.name =", s3.name)
 }
