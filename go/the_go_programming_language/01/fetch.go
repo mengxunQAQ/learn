@@ -9,5 +9,22 @@ import (
 )
 
 func main() {
+	for _, url := range os.Args[1:] {
+		// 发起请求
+		resp, err := http.Get(url)
+		// 错误处理
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
+			os.Exit(1)
+		}
 
+		// 读取响应
+		b, err := ioutil.ReadAll(resp.Body)
+		resp.Body.Close()
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "fetch: reading %s: %v\n", url, err)
+			os.Exit(1)
+		}
+		fmt.Printf("%s", b)
+	}
 }
