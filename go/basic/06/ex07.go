@@ -19,11 +19,11 @@ func Printer(s string) {
 
 func person1() {
 	Printer("hello:)")
-	ch <- 555
+	ch <- 555 // 向管道里写数据
 }
 
 func person2() {
-	<-ch
+	<-ch // 从管道里读数据，如果没数据会阻塞在这里
 	Printer("world")
 }
 
