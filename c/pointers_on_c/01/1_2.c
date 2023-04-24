@@ -1,3 +1,6 @@
+/*
+ * read line from std-input and print it to std-output with line-numbers
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
