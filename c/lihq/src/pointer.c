@@ -9,11 +9,15 @@ int main() {
 //    *p = 1;
 //    printf("%d\n", p);  // pointer's value is address
 //    printf("%p\n", *p);
-    int a;
-    extern int b;   // extern not exist in memory
-    int c;
-    printf("%p\n", &a);
-    printf("%p\n", &c);
+//    int a;
+//    extern int b;   // extern not exist in memory
+//    int c;
+//    printf("%p\n", &a);
+//    printf("%p\n", &c);
+    char *a;
+    char b = 't';
+    a = &b;
+    printf("%c\n", *a);
 
     return 0;
 }

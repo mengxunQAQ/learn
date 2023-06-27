@@ -16,6 +16,15 @@ struct student_st {
     struct birthday_st birth;
 };
 
+typedef struct test_s {
+
+       int i;
+       char s;
+
+
+} test_t;
+
+
 int main() {
 
     struct student_st stu = {101102, "Alice", {1999, 2, 10}};
@@ -24,6 +33,9 @@ int main() {
 
     struct student_st *p = &stu;
     printf("%d %s %d-%d-%d\n", p->ID, p->name, p->birth.year, p->birth.month, p->birth.day);
+
+    test_t t[] = {{1, 'a'}, {2, 'b'}};
+    printf("%d\n", sizeof(t));
 
     return 0;
 }
