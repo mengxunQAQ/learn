@@ -17,14 +17,12 @@ int main() {
     printf("%s %s %s\n", str1, str2, str3);
 
 
-    char s1[7] = "abcdef";
+    char s1[3] = "ac";
     char s2[3] = "de";
     char *s3;
 
-    s3 = "a";
     //memcpy(s3, s1, 5);
-    printf("%s\n", s3); 
-    int *i;
-    i = 1;
+    printf("%c\n", *(s1+1)); 
+    printf("%c\n", *s1+1); 
 
 }
