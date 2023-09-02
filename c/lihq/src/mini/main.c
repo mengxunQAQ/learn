@@ -1,14 +1,16 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include "add.h"
+#include <stdio.h>
+#include "max.h"
 
-
+/*
+ *  main函数里的void表示无参数 不可以传参数，如果main()没有void 则表示不知道参数有多少
+ *  extern int gAll 是声明   int gAll 是定义；声明不算代码不占用空间
+ * */
 int main(void) {
-    int a = 1;
-    int b = 2;
-    int *p = NULL;
-    printf("%p\n", A);  // print nil
-    printf("%p\n", p);  // print nil
-    printf("%d\n", add(a, b));
+
+    int i = 1;
+    int max_i;
+    max_i = max(i, gAll);
+    printf("max int is %d\n", max_i);
 
 }
