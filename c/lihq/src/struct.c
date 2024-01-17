@@ -35,7 +35,15 @@ int main() {
     printf("%d %s %d-%d-%d\n", p->ID, p->name, p->birth.year, p->birth.month, p->birth.day);
 
     test_t t[] = {{1, 'a'}, {2, 'b'}};
-    printf("%d\n", sizeof(t));
+    printf("%lu\n", sizeof(t));
+
+    // not give all value
+    test_t my_test_t = {
+        .s = 'a',
+    };
+    printf("my_test_t %d %c\n", my_test_t.i, my_test_t.s);
+
+
 
     return 0;
 }
