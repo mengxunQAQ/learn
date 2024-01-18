@@ -24,6 +24,11 @@ typedef struct test_s {
 
 } test_t;
 
+typedef struct bitfield {
+    unsigned int a:2;
+    unsigned int b:2;
+    unsigned int c:2;
+} my_bitfield;
 
 int main() {
 
@@ -34,15 +39,19 @@ int main() {
     struct student_st *p = &stu;
     printf("%d %s %d-%d-%d\n", p->ID, p->name, p->birth.year, p->birth.month, p->birth.day);
 
-    test_t t[] = {{1, 'a'}, {2, 'b'}};
-    printf("%lu\n", sizeof(t));
+    //test_t t[] = {{1, 'a'}, {2, 'b'}};
+    //printf("%lu\n", sizeof(t));
 
     // not give all value
     test_t my_test_t = {
         .s = 'a',
     };
     printf("my_test_t %d %c\n", my_test_t.i, my_test_t.s);
+    printf("my_test_t size %lu \n", sizeof(my_test_t));
 
+    // bitfield
+    my_bitfield test_1 = {1,2,3};
+    printf("my bitfield size: %lu\n", sizeof(test_1));
 
 
     return 0;
